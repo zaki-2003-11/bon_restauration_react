@@ -44,7 +44,7 @@ export default function Personnes() {
       inp_date.current.value = new Date().toISOString().split("T")[0];
    }, []);
 
-   useEffect(() => { Axios.get("http://localhost:8000/personnes").then((res) => setData(res.data)) }, []);
+   useEffect(() => { Axios.get("http://localhost:5000/personnes").then((res) => setData(res.data)) }, []);
 
    const ajouter_personne = async (e) => {
       e.preventDefault();
@@ -54,9 +54,23 @@ export default function Personnes() {
          prenom: inp_prenom.current.value
       };
 
-      await Axios.post("http://localhost:8000/personnes", per);
-      setData([...data, per]);
-      alert("personne ajoute avec succes ");
+
+      try {
+
+         await Axios.post("http://localhost:5000/personnes", per);
+         setData([...data, per]);
+
+         alert("Person added successfully.");
+
+      } catch (err) {
+
+         if (err.response) {
+            alert(err.response.data.message);
+         } else {
+            alert("Server error.");
+         }
+
+      }
 
 
 
@@ -180,6 +194,7 @@ export default function Personnes() {
                                  <select className="form-select" name="type" ref={inp_type}>
                                     <option value="déjeuner">Déjeuner</option>
                                     <option value="diner">Dîner</option>
+                                    <option value="diner_déjeuner">Déjeuner et Dîner</option>
                                  </select>
                               </div>
 
