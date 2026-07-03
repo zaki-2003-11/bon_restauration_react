@@ -23,8 +23,8 @@ export default function Print() {
       <>
          {personnes.flatMap((per) => {
             const types =
-               type === "diner_déjeuner"
-                  ? ["Diner", "Déjeuner"]
+               type === "dîner_déjeuner"
+                  ? ["Dîner", "Déjeuner"]
                   : [type];
 
             return types.map((mealType, index) => (

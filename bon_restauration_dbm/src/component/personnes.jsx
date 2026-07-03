@@ -26,10 +26,26 @@ export default function Personnes() {
 
    const [data, setData] = useState([]);
 
-   const imprimer = (e) => {
-      e.preventDefault();
-      const personnesSelectionnees =
-         data.filter(p => selectedIds.includes(p.id));
+  const imprimer = async (e) => {
+
+   e.preventDefault();
+
+   if (selectedIds.length === 0) {
+      alert("Veuillez sélectionner au moins une personne.");
+      return;
+   }
+
+   try {
+
+      await Axios.post("http://localhost:5000/consommations/bulk", {
+         personnes: selectedIds,
+         date : inp_date.current.value,
+         type: inp_type.current.value
+      });
+
+      const personnesSelectionnees = data.filter(p =>
+         selectedIds.includes(p.id)
+      );
 
       navigate("/print", {
          state: {
@@ -39,7 +55,14 @@ export default function Personnes() {
          }
       });
 
-   };
+   } catch (err) {
+
+      console.log(err);
+      alert("Erreur lors de l'enregistrement.");
+
+   }
+
+};
    useEffect(() => {
       inp_date.current.value = new Date().toISOString().split("T")[0];
    }, []);
@@ -193,8 +216,8 @@ export default function Personnes() {
 
                                  <select className="form-select" name="type" ref={inp_type}>
                                     <option value="déjeuner">Déjeuner</option>
-                                    <option value="diner">Dîner</option>
-                                    <option value="diner_déjeuner">Déjeuner et Dîner</option>
+                                    <option value="dîner">Dîner</option>
+                                    <option value="dîner_déjeuner">Déjeuner et Dîner</option>
                                  </select>
                               </div>
 
