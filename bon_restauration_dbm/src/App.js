@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import Personnes from './component/personnes';
 import Print from './component/print';
@@ -6,26 +6,31 @@ import Historique from './component/historique';
 import Statistique from './component/statistique';
 
 function App() {
+  const location = useLocation();
+   const hideNavbar = location.pathname === "/print";
   return (
     <>
-      <div className='container'>
+      {!hideNavbar && (
+        <div className="container">
+          <div className="row">
+            <div className="col-2 btn btn-info">
+              <Link to="/">Personnes</Link>
+            </div>
 
+            <div className="col-1"></div>
 
-        <div className='row'>
-          <div className='col-2 btn btn-info'>
-            <Link  to={"/"}>Personnes</Link>
-          </div>
-          <div className='col-1 '></div>
-          <div className='col-2 btn btn-info'>
-            <Link  to={"/historique"}>Historique</Link>
-          </div>
-          <div className='col-1 '></div>
-          <div className='col-2 btn btn-info'>
-            <Link  to={"/statistique"}>Statistique</Link>
+            <div className="col-2 btn btn-info">
+              <Link to="/historique">Historique</Link>
+            </div>
+
+            <div className="col-1"></div>
+
+            <div className="col-2 btn btn-info">
+              <Link to="/statistique">Statistique</Link>
+            </div>
           </div>
         </div>
-
-      </div>
+      )}
 
       <Routes>
         <Route path="/" element={<Personnes />} />

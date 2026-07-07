@@ -21,6 +21,7 @@ export default function Print() {
    }, []);
    return (
       <>
+         {/* <div className="print-container"> */}
          {personnes.flatMap((per) => {
             const types =
                type === "dîner_déjeuner"
@@ -43,8 +44,8 @@ export default function Print() {
                      </div>
 
                      <div className="title">
-                        <h2>BON DE RESTAURATION <br />({mealType})</h2>
-                        <h3>N° . . . . . . . . . .</h3>
+                        <h5>BON DE RESTAURATION <br />({mealType})</h5>
+                        <h6>N° . . . . . . . . . .</h6>
                      </div>
 
                   </div>
@@ -90,28 +91,32 @@ export default function Print() {
                   <div className="signature-box">
 
                      <div className="left">
-                        <h3>
+                        <h6>
                            Cachet et signature de l'administration
-                        </h3>
+                        </h6>
                      </div>
 
                      <div className="right">
-                        <h3>
-                           Signature
-                           <br />
-                           du bénéficiaire
-                        </h3>
+                        <h6>
+                           Signature du bénéficiaire
+                        </h6>
                      </div>
 
                   </div>
 
                   <div className="footer">
                      NB. : Ce bon est valable uniquement à la date indiquée et n'est ni échangeable ni remboursable.
+                      <br />
+                     -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+                     <br />
                   </div>
-
+   
                </div>
+
             ));
          })}
+         {/* </div> */}
+
       </>
    );
 }
