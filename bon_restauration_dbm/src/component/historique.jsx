@@ -22,7 +22,7 @@ export default function Historique() {
 
       try {
 
-         const res = await Axios.get("http://localhost:5000/historique", {
+         const res = await Axios.get("https://bonrestaurationexspress-production.up.railway.app/historique", {
 
             params: {
                nom,

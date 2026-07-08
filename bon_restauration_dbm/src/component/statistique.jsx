@@ -15,7 +15,7 @@ export default function Statistiques() {
 
         try {
 
-            const res = await Axios.get("http://localhost:5000/statistiques/dashboard");
+            const res = await Axios.get("https://bonrestaurationexspress-production.up.railway.app/statistiques/dashboard");
 
             setStats(res.data);
 

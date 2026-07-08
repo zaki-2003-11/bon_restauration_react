@@ -37,7 +37,7 @@ export default function Personnes() {
 
    try {
 
-      await Axios.post("http://localhost:5000/consommations/bulk", {
+      await Axios.post("https://bonrestaurationexspress-production.up.railway.app/consommations/bulk", {
          personnes: selectedIds,
          date : inp_date.current.value,
          type: inp_type.current.value
@@ -67,7 +67,7 @@ export default function Personnes() {
       inp_date.current.value = new Date().toISOString().split("T")[0];
    }, []);
 
-   useEffect(() => { Axios.get("http://localhost:5000/personnes").then((res) => setData(res.data)) }, []);
+   useEffect(() => { Axios.get("https://bonrestaurationexspress-production.up.railway.app/personnes").then((res) => setData(res.data)) }, []);
 
    const ajouter_personne = async (e) => {
       e.preventDefault();
@@ -80,7 +80,7 @@ export default function Personnes() {
 
       try {
 
-         await Axios.post("http://localhost:5000/personnes", per);
+         await Axios.post("https://bonrestaurationexspress-production.up.railway.app/personnes", per);
          setData([...data, per]);
 
          alert("Person added successfully.");
