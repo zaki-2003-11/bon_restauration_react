@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Axios from "axios";
 
 export default function Historique() {
@@ -14,10 +14,10 @@ export default function Historique() {
 
       déjeuner: 0,
 
-      déner: 0
+      dîner: 0
 
    });
-   const chargerHistorique = async () => {
+   const chargerHistorique = useCallback(async () => {
 
 
       try {
@@ -52,7 +52,7 @@ export default function Historique() {
 
       }
 
-   };
+   }, [nom, date, type]);
 
    useEffect(() => {
 
@@ -64,7 +64,7 @@ export default function Historique() {
 
       return () => clearTimeout(timer);
 
-   }, [nom, date, type]);
+   }, [chargerHistorique]);
 
    return (
 

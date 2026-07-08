@@ -1,0 +1,6 @@
+// src/api.js
+import axios from "axios";
+
+export default axios.create({
+  baseURL: "https://bonrestaurationexpress-production.up.railway.app"
+});
